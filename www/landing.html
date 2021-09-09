@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <title>OMNI Projects : Menu</title>
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900|Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="fonts/css/fontawesome-all.min.css">
+    <link rel="manifest" href="_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
+    <link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
+
+    <link rel="stylesheet" href="lib/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="lib/jquery/jquery-1.12.4.min.js"></script>
+    <script src="lib/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            console.log("landing page ready!");
+            var auth = JSON.parse(sessionStorage.getItem("auth"));
+            console.log(auth);
+            $("#username").attr("data-username", auth.DisplayName);
+
+
+        });
+    </script>
+
+
+</head>
+
+<body class="theme-light">
+
+    <!--<div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>-->
+
+    <div id="page">
+        <div class="spinner overlay" id="spinner">
+            <div class="d-flex justify-content-center"><span class="spinner-border text-primary" role="status" aria-hidden="true"></span>
+            </div>
+        </div>
+
+
+        <!-- header and footer bar go here-->
+        <div class="header header-fixed header-auto-show header-logo-app">
+            <div class="header-title header-subtitle">OMNI Projects</div>
+            <!--<a href="#" data-back-button class="header-title header-subtitle">Back to Pages</a>
+            <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
+
+            <a href="#" data-menu="menu-main" class="header-icon header-icon-2"><i class="fas fa-bars"></i></a>-->
+        </div>
+        <div id="footer-bar" class="footer-bar-5">
+            <a href="#" onclick="return landing_cmdApprovals();"><i data-feather="list" data-feather-line="1" data-feather-size="21" data-feather-color="red-dark" data-feather-bg="red-fade-light"></i><span>Jobs</span></a>
+            <a href="#" onclick="return landing_cmdRequests();"><i data-feather="tool" data-feather-line="1" data-feather-size="21" data-feather-color="brown-dark" data-feather-bg="brown-fade-light"></i><span>Work Orders</span></a>
+            <a href="#" onclick="landing()" class="active-nav"><i data-feather="home" data-feather-line="1" data-feather-size="21" data-feather-color="blue-dark" data-feather-bg="blue-fade-light"></i><span>Home</span></a>
+            <a href="#" onclick="return landing_cmdTasks();"><i data-feather="dollar-sign" data-feather-line="1" data-feather-size="21" data-feather-color="orange-dark" data-feather-bg="orange-fade-light"></i><span>Payments</span></a>
+            <a href="#" onclick="return landing_cmdStats();"><i data-feather="eye" data-feather-line="1" data-feather-size="21" data-feather-color="magenta-dark" data-feather-bg="magenta-fade-light"></i><span>Visitors</span></a>
+        </div>
+
+        <div class="page-content">
+
+            <div class="page-title page-title-large">
+                <h2 data-username="Enabled!" class="greeting-text" id="username"></h2>
+                <a href="#" data-menu="menu-main" class="bg-fade-highlight-light shadow-xl preload-img" data-src="images/omninxg_round_logo_transparent.png"></a>
+            </div>
+            <div class="card header-card shape-rounded" data-card-height="180">
+                <div class="card-overlay bg-highlight opacity-95"></div>
+                <div class="card-overlay dark-mode-tint"></div>
+                <div class="card-bg preload-img" data-src="images/pictures/20s.jpg"></div>
+            </div>
+
+            <!--<div class="card card-style">
+                <div class="content">
+                    <h4 class="font-600">Let's get Started</h4>
+                    <p>
+                        Select the page you want to see first. You can always come back to this menu later on.
+                    </p>
+                </div>
+            </div>-->
+
+            <div class="row text-center mb-3">
+
+                <a href="#" class="col-6 pe-2" id="landing_cmdJobs" onclick="return landing_cmdJobs();">
+                    <div class="card card-style  me-0 mb-3  pt-4">
+                        <h1 class="center-text pt-4">
+
+                            <i data-feather="list" data-feather-line="1" data-feather-size="50" data-feather-color="red-dark" data-feather-bg="red-fade-light"></i>
+
+                        </h1>
+                        <h4 class="color-theme font-600">Jobs</h4>
+                        <p class="mt-n2 font-11 color-highlight">
+                            Manage Jobs
+                        </p>
+                        <p class="font-10 opacity-30 mb-1">Tap to View</p>
+                    </div>
+                </a>
+                <a href="#" class="col-6 ps-2" id="landing_cmdRequests" onclick="return landing_cmdWorkOrders();">
+                    <div class="card card-style ms-0 mb-3 pt-4 ">
+                        <h1 class="center-text pt-4">
+                            <i data-feather="tool" data-feather-line="1" data-feather-size="50" data-feather-color="brown-dark" data-feather-bg="brown-fade-light">
+                        </i>
+                        </h1>
+                        <h4 class="color-theme font-600">Work Orders</h4>
+                        <p class="mt-n2 font-11 color-highlight">
+                            Review Work Orders
+                        </p>
+                        <p class="font-10 opacity-30 mb-1">Tap to View</p>
+                    </div>
+                </a>
+                <a href="#" class="col-6 pe-2" id="landing_cmdTasks" onclick="return landing_cmdTasks();">
+                    <div class="card card-style me-0  pt-4 mb-3">
+                        <h1 class="center-text pt-4">
+                            <i data-feather="dollar-sign" data-feather-line="1" data-feather-size="50" data-feather-color="orange-dark" data-feather-bg="orange-fade-light">
+                        </i>
+                        </h1>
+                        <h4 class="color-theme font-600">Payments</h4>
+                        <p class="mt-n2 font-11 color-highlight">
+                            Payment Requests
+                        </p>
+                        <p class="font-10 opacity-30 mb-1">Tap to View</p>
+                    </div>
+                </a>
+                <a href="#" onclick="return landing_cmdStats();" class="col-6 ps-2">
+                    <div class="card card-style  ms-0 mb-3 pt-4">
+                        <h1 class="center-text pt-4">
+                            <i data-feather="inbox" data-feather-line="1" data-feather-size="50" data-feather-color="blue-dark" data-feather-bg="blue-fade-light">
+                        </i>
+                        </h1>
+                        <h4 class="color-theme font-600">Purchase Orders</h4>
+                        <p class="mt-n2 font-11 color-highlight">
+                            Review Purchase Orders
+                        </p>
+                        <p class="font-10 opacity-30 mb-1">Tap to View</p>
+                    </div>
+                </a>
+                <a href="#" class="col-6 pe-2" onclick="return landing_cmdSecurity();">
+                    <div class="card card-style me-0 mb-3  pt-4">
+                        <h1 class="center-text pt-4">
+                            <i data-feather="eye" data-feather-line="1" data-feather-size="50" data-feather-color="magenta-dark" data-feather-bg="magenta-fade-light">
+                        </i>
+                        </h1>
+                        <h4 class="color-theme font-600">Visitors</h4>
+                        <p class="mt-n2 font-11 color-highlight">
+                            Record Site Visits
+                        </p>
+                        <p class="font-10 opacity-30 mb-1">Tap to View</p>
+                    </div>
+                </a>
+                <a href="#" class="col-6 ps-2" onclick="return landing_cmdLogout();">
+                    <div class="card card-style ms-0 mb-3  pt-4">
+                        <h1 class="center-text pt-4">
+                            <i data-feather="log-out" data-feather-line="1" data-feather-size="50" data-feather-color="green-dark" data-feather-bg="green-fade-light">
+                        </i>
+                        </h1>
+                        <h4 class="color-theme font-600">Logout</h4>
+                        <p class="mt-n2 font-11 color-highlight">
+                            Close OMNI Projects
+                        </p>
+                        <p class="font-10 opacity-30 mb-1">Tap to View</p>
+                    </div>
+                </a>
+            </div>
+
+
+            <!-- footer and footer card-->
+
+        </div>
+        <!-- end of page content-->
+
+
+
+
+
+    </div>
+
+    <!-- Error Toast -->
+    <div id="ErrorDialog" class="toast toast-tiny toast-top bg-red-dark" data-bs-delay="3000" data-bs-autohide="true"><i class="fa fa-times me-3"></i><span id="ErrorMessage"></span></div>
+
+    <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts/landing.js"></script>
+    <script type="text/javascript" src="scripts/custom.js"></script>
+</body>
+
+</html>
